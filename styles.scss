@@ -1,6 +1,7 @@
 $menu-width: 20rem;
 $menu-btn: 3rem;
 $dark-gr: #888888;
+$gr: #E4E4E4;
 
 body {
   margin: 0;
@@ -56,7 +57,7 @@ body {
   z-index: 200;
   width: 100%;
 
-  background: #E4E4E4;
+  background: $gr;
 
   &-links {
     display: flex;
@@ -85,9 +86,9 @@ body {
         top: 50%;
         left:0;
         border-style: solid;
-        border-width: 8px 10px 8px 0;
+        border-width: 6px 8px 6px 0;
         border-color: transparent $dark-gr transparent transparent;
-        margin-top: -8px;
+        margin-top: -6px;
       }
     }
 
@@ -101,9 +102,9 @@ body {
         top: 50%;
         right:0;
         border-style: solid;
-        border-width: 8px 0 8px 10px;
+        border-width: 6px 0 6px 8px;
         border-color: transparent transparent transparent $dark-gr;
-        margin-top: -8px;
+        margin-top: -6px;
       }
     }
 
@@ -190,16 +191,19 @@ body {
     background: transparent;
   }
 
-  &-list-date {
-    background-color: #FDFDFD;
-    border-bottom: 1px solid #CCC;
-    border-top: 1px solid #FFF;
-    height: 31px;
-    line-height: 31px;
-  }
+
 
   li {
     padding: .5rem 1rem;
+    &.pure-menu-list-date {
+      background-color: $gr;
+      border-bottom: 1px solid lighten($gr, 5%);
+      border-bottom: 1px solid darken($gr, 5%);
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      font-weight: bold;
+      margin: .5rem 0;
+    }
   }
   a {
     color:black;
