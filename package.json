@@ -1,0 +1,21 @@
+{
+  "name": "kotlin_rss",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node-sass ./styles.scss ./styles.css --output-style compressed",
+    "watch": "node-sass ./styles.scss ./styles.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IRus/kotlin_rss.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IRus/kotlin_rss/issues"
+  },
+  "homepage": "https://github.com/IRus/kotlin_rss#readme"
+}
