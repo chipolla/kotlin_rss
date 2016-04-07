@@ -5,9 +5,10 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.pure-img-responsive {
+img {
   max-width: 100%;
-  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 /*
@@ -80,6 +81,15 @@ Remove all background/borders, since we are applying them to #menu.
     border: none;
     background: transparent;
   }
+
+  &-list-date {
+    background-color: #FDFDFD;
+    border-bottom: 1px solid #CCC;
+    border-top: 1px solid #FFF;
+    height: 31px;
+    line-height: 31px;
+  }
+
   li {
     padding: .5rem 1rem;
   }
