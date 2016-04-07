@@ -4,17 +4,23 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Building a Kotlin project 2/2</title>
     <link rel="stylesheet" href="./styles.css">
 
 </head>
 <body>
 <div id="layout" class="layout">
-    <!-- Menu toggle -->
-    <button class="menu-link">
-        <!-- Hamburger icon -->
-        <span></span>
-    </button>
+    <header class="article-nav">
+        <button class="menu-link">
+            <!-- Hamburger icon -->
+            <span></span>
+        </button>
+        <div class="article-nav-links">
+            <a class="article-nav-link article-nav-link--prev">previous</a>
+            <a class="article-nav-link article-nav-link--next">next</a>
+        </div>
+    </header>
 
     <aside id="menu" class="menu">
         <div class="pure-menu">
@@ -167,9 +173,9 @@
         </div>
     </aside>
 
-    <section id="main">
+    <section id="main" class="main">
 
-        <section class="content">
+        <section class="main-content">
             <h1><a href="http://cirorizzo.net/2016/03/04/building-a-kotlin-project-2/">Building a Kotlin project 2/2</a>
                 - Mar 04, 2016</h1>
             <h2>by Ciro Rizzo</h2>

@@ -1,19 +1,18 @@
 $menu-width: 20rem;
+$menu-btn: 3rem;
+$dark-gr: #888888;
+
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
+  button,
+  a,
+  * {
+    -webkit-appearance: none;
+  }
 }
 
-img {
-  max-width: 100%;
-  display: block;
-  margin: 0 auto;
-}
-
-/*
-Add transition to containers so they can push in and out.
-*/
 .layout,
 .menu,
 .menu-link {
@@ -24,9 +23,6 @@ Add transition to containers so they can push in and out.
   transition: all 0.2s ease-out;
 }
 
-/*
-This is the parent `<div>` that contains the menu and the content area.
-*/
 .layout {
   position: relative;
   padding-left: 0;
@@ -36,23 +32,92 @@ This is the parent `<div>` that contains the menu and the content area.
     }
     .menu-link {
       left: $menu-width;
+      background: #F1F1F1;
+      span {
+
+        background-color: $dark-gr;
+        &:before,
+        &:after {
+          background-color: $dark-gr;
+        }
+      }
     }
   }
 }
 
-/*
-The content `<div>` is where all your content goes.
-*/
-.content {
-  margin: 0 auto;
-  padding: 0 2rem;
-  max-width: 50rem;
-}
+.article-nav {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  flex-direction: row;
 
-/*
-The `#menu` `<div>` is the parent `<div>` that contains the `.pure-menu` that
-appears on the left side of the page.
-*/
+  position: fixed;
+  top: 0;
+  z-index: 200;
+  width: 100%;
+
+  background: #E4E4E4;
+
+  &-links {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &-link {
+    display: flex;
+    position: relative;
+    padding: 0 1.5rem;
+    line-height: $menu-btn;
+    color: $dark-gr;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+
+    &--prev {
+      margin-left: 1rem;
+      &:before {
+        content: "";
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 50%;
+        left:0;
+        border-style: solid;
+        border-width: 8px 10px 8px 0;
+        border-color: transparent $dark-gr transparent transparent;
+        margin-top: -8px;
+      }
+    }
+
+    &--next {
+      margin-right: 1rem;
+      &:after {
+        content: "";
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 50%;
+        right:0;
+        border-style: solid;
+        border-width: 8px 0 8px 10px;
+        border-color: transparent transparent transparent $dark-gr;
+        margin-top: -8px;
+      }
+    }
+
+    &:hover {
+      color: black;
+      &:before {
+        border-color: transparent black transparent transparent;
+      }
+      &:after {
+        border-color: transparent transparent transparent black;
+      }
+    }
+  }
+}
 
 .menu {
   margin-left: -$menu-width; /* "#menu" width */
@@ -61,18 +126,61 @@ appears on the left side of the page.
   top: 0;
   left: 0;
   bottom: 0;
+  padding-top: $menu-btn;
 
-  z-index: 1000; /* so the menu or its navicon stays above all content */
+  z-index: 100;
+  background: #F1F1F1;
+
+  &-link {
+    font-size: 10px; /* change this value to increase/decrease button size */
+    z-index: 10;
+    width: $menu-btn;
+    height: $menu-btn;
+    padding: 0 0.5rem;
+    border: none;
+    background: transparent;
+    outline-color: transparent;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      outline-color: transparent;
+      span {
+        opacity: .6;
+      }
+    }
+
+    span {
+      position: relative;
+      display: block;
+      background-color: white;
+      width: 100%;
+      height: 0.2rem;
+      &:before,
+      &:after {
+        position: absolute;
+        display: block;
+        background-color: white;
+        width: 100%;
+        height: 0.2rem;
+        content: " ";
+      }
+      &:after {
+        top: 0.5rem;
+      }
+      &:before {
+        bottom: 0.5rem;
+      }
+    }
+  }
+}
+
+
+.pure-menu {
+  height: 100%;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 
-  background: #F1F1F1;
-}
-
-/*
-Remove all background/borders, since we are applying them to #menu.
-*/
-.pure-menu {
   ul {
     margin: 0;
     padding: 1rem 0;
@@ -97,79 +205,60 @@ Remove all background/borders, since we are applying them to #menu.
     color:black;
     text-decoration: none;
     &:hover {
-      color: #888888;
+      color: $dark-gr;
     }
   }
 }
 
-/* -- Dynamic Button For Responsive Menu -------------------------------------*/
+.main{
+  padding-top: $menu-btn;
 
-/*
-The button to open/close the Menu is custom-made and not part of Pure. Here's
-how it works:
-*/
-
-/*
-`.menu-link` represents the responsive menu toggle that shows/hides on
-small screens.
-*/
-.menu-link {
-  position: fixed;
-  display: block; /* show this only on small screens */
-  top: 0;
-  left: 0; /* "#menu width" */
-  font-size: 10px; /* change this value to increase/decrease button size */
-  z-index: 10;
-  width: 3rem;
-  height: 3rem;
-  padding: 0 0.5rem;
-  border: none;
-  background: white;
-  outline-color: transparent;
-
-  &:hover,
-  &:focus {
-    outline-color: transparent;
-    span {
-      opacity: .9;
+  &-content {
+    margin: 0 auto;
+    padding: 0 2rem;
+    max-width: 50rem;
+    @media screen and (max-width: 480px) {
+      padding: 0 1rem;
     }
   }
 
-  span {
-    position: relative;
+  img {
+    max-width: 100%;
     display: block;
-    background-color: #ccc;
+    margin: 0 auto;
+  }
+
+  code {
     width: 100%;
-    height: 0.2rem;
-    &:before,
-    &:after {
-      position: absolute;
-      display: block;
-      background-color: #ccc;
-      width: 100%;
-      height: 0.2rem;
-      content: " ";
+    overflow: auto;
+    display: block;
+    @media screen and (max-width: 480px) {
+      margin: 0.5rem -1rem;
+      padding: 0.5rem 1rem;
     }
-    &:after {
-      top: 0.5rem;
-    }
-    &:before {
-      bottom: 0.5rem;
-    }
+  }
+  h1 {
+    font-size: 1.6rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  h3 {
+    font-size: 1.4rem;
+  }
+  h4 {
+    font-size: 1.3rem;
+  }
+  h5 {
+    font-size: 1.2rem;
+  }
+  h6 {
+    font-size: 1.1rem;
   }
 }
 
-.layout.active {
-  position: relative;
-  .menu-link {
-    background: #F1F1F1;
-    span {
-      background-color: #888888;
-      &:before,
-      &:after {
-        background-color: #888888;
-      }
-    }
-  }
-}
+
+
+
+
 
